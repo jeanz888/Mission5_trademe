@@ -17,19 +17,34 @@ const BidList = ({ userId }) => {
     };
     fetchBids();
   }, [userId]);
+import React from 'react'; // Import the React library
 
-  // Feature #5: Create a list of placed bid for user
+/**
+ * CategoryList Component
+ * @param {Object} props - React props
+ * @param {Array} props.categories - An array of category objects
+ * @returns {JSX.Element} The CategoryList component
+ */
+const CategoryList = ({ categories }) => {
   return (
     <div>
-      <h2>Your Bids</h2>
+      <h2>Categories</h2>
       <ul>
-        {bids.map((bid) => (
-          <li key={bid._id}>
-            Item: {bid.itemId}, Amount: ${bid.amount}, Status: {bid.status}
-            {bid.status === 'lost' && (
-              <button onClick={() => alert('Do you want to place a new bid?')}>Rebid</button>
-            )}
-            {bid.status === 'won' && <p>Congratulations! You won this bid.</p>}
+        {categories.map((category) => (
+          <li key={category.id}>
+            <h3>{category.name}</h3>
+            <ul>
+              {category.items.map((item) => (
+                <li key={item.id}>
+                  {item.name}
+                  <ul>
+                    {item.bulletPoints.map((point, index) => (
+                      <li key={index}>{point}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
           </li>
         ))}
       </ul>
@@ -37,4 +52,4 @@ const BidList = ({ userId }) => {
   );
 };
 
-export default BidList;
+export default CategoryList; // Export the CategoryList component
