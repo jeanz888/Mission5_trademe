@@ -34,7 +34,7 @@ mongoose.connect(process.env.MONGODB_URI, {
   
   // Import and use routes
   const bidRoutes = require('./routes/bidRoutes');
-  app.use('/api/bids', bidRoutes);
+  app.use('/api/bids', require('./routes/bidRoutes'));
   
   // Error handling middleware
 app.use((err, req, res, next) => {
